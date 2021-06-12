@@ -34,8 +34,6 @@ func move_along_path(distance : float) -> void:
 		start_point = path[0]
 		path.remove(0)
 		
-		
-
 func set_path(value : PoolVector2Array) -> void: 
 	path = value
 	if value.size() == 0 : return
