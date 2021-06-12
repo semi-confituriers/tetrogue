@@ -70,10 +70,11 @@ centered = false
 [node name="Hero" parent="." instance=ExtResource( 6 )]
 position = Vector2( 141.47, 456.493 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Hero"]
+[node name="KinematicBody2D" type="KinematicBody2D" parent="Hero"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hero/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hero/KinematicBody2D"]
 position = Vector2( -3.56763, 6.54065 )
 shape = SubResource( 1 )
 
 [node name="Line2D" type="Line2D" parent="."]
+width = 2.0

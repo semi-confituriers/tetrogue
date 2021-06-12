@@ -128,7 +128,7 @@ func PlacePiece(piece: Sprite, gridPos: Vector2):
 #				var collObj = load("res://Scenes/collision_tile.tscn")
 #				collObj.connect("body_entered", self, "step_on_enemy")
 #				mapTileMap.add_child(collObj)
-				child.get_node("CollisionTile").connect("body_entered", self, "step_on_enemy")
+				child.get_node("CollisionTile").connect("area_entered", self, "step_on_enemy")
 			else:
 				print("Unknown object name " + child.name)
 				
