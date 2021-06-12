@@ -1,19 +1,14 @@
 extends Node2D
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
 var mapTileMap: TileMap;
 var piecesNode: Node2D;
-var dragging = false;
-var draggedPiece = null;
-var draggedOffset;
-var draggedPhantom;
+var dragging: bool = false;
+var draggedPiece: Sprite = null;
+var draggedOffset: Vector2;
+var draggedPhantom: Sprite;
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	mapTileMap = $Map
 	piecesNode = $Pieces
@@ -25,12 +20,8 @@ func _input(event):
 		if event.pressed && dragging == false:
 			for piece in $Pieces.get_children():
 				if piece is Sprite:
-					print("piece.position ", piece.position)
-					print("piecesRelPos ", piecesRelPos)
 					var pieceRelPos = piecesRelPos - piece.position
-					print("pieceRelPos ", pieceRelPos)
 					if piece.is_pixel_opaque(pieceRelPos):
-						print("Opaque pixel at ", pieceRelPos)
 						dragging = true
 						draggedPiece = piece
 						draggedPiece.modulate = Color(1, 1, 1, 0.5)
@@ -40,7 +31,6 @@ func _input(event):
 						draggedPhantom.position = event.position - draggedOffset
 						break
 		elif event.pressed == false && dragging == true:
-				print("Dragging stopped at: ", event.position)
 				draggedPiece.modulate = Color(1, 1, 1, 1)
 				if piecesRelPos.x >= 0:
 					# Dropped in pieces section
@@ -59,9 +49,12 @@ func _input(event):
 					var gridPos = mapRelPosPiece / mapTileMap.cell_size
 					gridPos = Vector2(round(gridPos.x), round(gridPos.y))
 					
+					var mapRect = mapTileMap.get_used_rect()
+					
 					var canFit = true
 					for filling in GetPieceFillings(draggedPiece):
-						if mapTileMap.get_cellv(gridPos + filling) != -1:
+						if mapTileMap.get_cellv(gridPos + filling) != -1 \
+						or !mapRect.has_point(gridPos + filling):
 							canFit = false
 							break
 					
