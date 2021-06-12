@@ -11,11 +11,11 @@ func process_shield(): pass
 func process_sword(): pass
 
 var trigger_tiles = {
-	'heart' : process_heart,
-	'heart2': process_heart_2,
-	'exit'  : process_exit,
-	'shield': process_shield,
-	'sword' : process_sword,
+	'heart' : funcref(self, "process_heart"),
+	'heart2' : funcref(self, "process_heart2"),
+	'exit' : funcref(self, "process_exit"),
+	'shield' : funcref(self, "process_shield"),
+	'sword' : funcref(self, "process_sword"),
 }
 
 var trigger_position_dict = {}
