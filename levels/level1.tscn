@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://res/maptileset.tres" type="TileSet" id=1]
+[ext_resource path="res://res/piecestileset.tres" type="TileSet" id=1]
 [ext_resource path="res://scripts/Level.gd" type="Script" id=2]
 
 [node name="Level" type="Node2D"]
@@ -41,13 +41,20 @@ margin_right = 1024.0
 margin_bottom = 600.0
 size_flags_horizontal = 3
 
-[node name="Map" type="TileMap" parent="."]
-position = Vector2( 30.0339, 15.0169 )
-format = 1
-
 [node name="Pieces" type="TileMap" parent="."]
-position = Vector2( 618.651, 6.81787 )
+position = Vector2( 612, 0 )
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 40, 40 )
 format = 1
-tile_data = PoolIntArray( 131073, 8, 0, 196615, 8, 0 )
+tile_data = PoolIntArray( 65537, 0, 0, 262146, 2, 0, 458757, 3, 0, 524290, 5, 0, 720898, 5, 0 )
+
+[node name="MapCont" type="Node2D" parent="."]
+
+[node name="Pieces" type="TileMap" parent="MapCont"]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 40, 40 )
+format = 1
+
+[node name="Map" type="TileMap" parent="MapCont"]
+cell_size = Vector2( 40, 40 )
+format = 1

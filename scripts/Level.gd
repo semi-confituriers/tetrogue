@@ -5,8 +5,9 @@ extends Node2D
 # var a = 2
 # var b = "text"
 
-var mapTileMap;
 var piecesTileMap;
+var mapTileMap;
+var mapPiecesTileMap;
 var dragging;
 var draggedSprite;
 var draggedTileID;
@@ -15,8 +16,9 @@ var draggedTileFrom;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	mapTileMap = $Map
 	piecesTileMap = $Pieces
+	mapTileMap = $MapCont/Map
+	mapPiecesTileMap = $MapCont/Pieces
 	dragging = false
 	draggedSprite = null
 	draggedTileID = null
@@ -26,6 +28,7 @@ func _input(event):
 	
 	if event is InputEventMouseButton && event.button_index == BUTTON_LEFT:
 		var piecesRelPos = event.position - piecesTileMap.position
+		var mapRelPos = event.position - $MapCont.position
 		if event.pressed:
 			if piecesRelPos.x >= 0:
 				var gridPos = piecesTileMap.world_to_map(piecesRelPos)
@@ -36,6 +39,7 @@ func _input(event):
 					draggedTileID = tileID
 					draggedTileFrom = gridPos
 					draggedSprite = Sprite.new()
+					draggedSprite.position = event.position
 					draggedSprite.texture = piecesTileMap.tile_set.tile_get_texture(tileID)
 					draggedSprite.region_rect = piecesTileMap.tile_set.tile_get_region(tileID)
 					draggedSprite.region_enabled = true
@@ -52,6 +56,12 @@ func _input(event):
 					var gridPos = piecesTileMap.world_to_map(piecesRelPos)
 					piecesTileMap.set_cell(draggedTileFrom.x, draggedTileFrom.y, -1)
 					piecesTileMap.set_cell(gridPos.x, gridPos.y, draggedTileID)
+				else:
+					var gridPos = mapPiecesTileMap.world_to_map(mapRelPos)
+					print("gridPos", gridPos)
+					piecesTileMap.set_cell(draggedTileFrom.x, draggedTileFrom.y, -1)
+					mapPiecesTileMap.set_cell(gridPos.x, gridPos.y, draggedTileID)
+					
 				
 				
 	elif event is InputEventMouseMotion && dragging:
