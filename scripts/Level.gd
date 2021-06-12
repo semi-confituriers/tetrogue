@@ -9,10 +9,36 @@ var draggedOffset: Vector2;
 var draggedPhantom: Sprite;
 
 
+func process_heart(): pass
+func process_heart_2(): pass
+func process_exit(): pass
+func process_shield(): pass
+func process_sword(): pass
+
+var trigger_tiles = {
+	'heart' : funcref(self, "process_heart"),
+	'heart2' : funcref(self, "process_heart2"),
+	'exit' : funcref(self, "process_exit"),
+	'shield' : funcref(self, "process_shield"),
+	'sword' : funcref(self, "process_sword"),
+}
+var trigger_position_dict = {}
+
 func _ready():
-	mapTileMap = $Map
+	mapTileMap = $MapNavigation/Map
 	piecesNode = $Pieces
 	
+	# Memorizing where trigger tiles are : 
+	# filling trigger_position_dict
+	for name in trigger_tiles: 
+		var tile_id = mapTileMap.tile_set.find_tile_by_name(name)
+		for cell_pos in mapTileMap.get_used_cells_by_id(tile_id): 
+			var center = mapTileMap.map_to_world(cell_pos) + 0.5 * mapTileMap.cell_size
+			trigger_position_dict[center] = {
+				'func' : trigger_tiles[name],
+				'available' : true
+			}
+	print("trigger_position_dict=", trigger_position_dict)
 func _input(event):
 	if event is InputEventMouseButton && event.button_index == BUTTON_LEFT:
 		var piecesRelPos = event.position - piecesNode.position
@@ -63,8 +89,7 @@ func _input(event):
 						mapTileMap.add_child(draggedPiece)
 						draggedPiece.position = gridPos * mapTileMap.cell_size
 						
-						for filling in GetPieceFillings(draggedPiece):
-							mapTileMap.set_cellv(gridPos + filling, 16)
+						PlacePiece(draggedPiece, gridPos)
 					else:
 						pass
 					
@@ -90,3 +115,50 @@ func GetPieceFillings(piece: Sprite):
 				ret.append(Vector2(x, y))
 
 	return ret
+	
+func PlacePiece(piece: Sprite, gridPos: Vector2):
+	for filling in GetPieceFillings(piece):
+		mapTileMap.set_cellv(gridPos + filling, 16)
+	mapTileMap.update_dirty_quadrants()
+		
+	for child in piece.get_children():
+		if child is Sprite:
+			var childTilePos = mapTileMap.world_to_map(child.position + piece.position)
+			if child.name == "enemy":
+#				var collObj = load("res://Scenes/collision_tile.tscn")
+#				collObj.connect("body_entered", self, "step_on_enemy")
+#				mapTileMap.add_child(collObj)
+				child.get_node("CollisionTile").connect("body_entered", self, "step_on_enemy")
+			else:
+				print("Unknown object name " + child.name)
+				
+	OnPiecePlaced()
+
+func step_on_enemy(body: Node):
+	print("Stepped on enemy tile ", body)
+
+
+func OnPiecePlaced(): 
+	print("OnPiecePlaced")
+	print("trigger_position_dict=", trigger_position_dict)
+	for position in trigger_position_dict: 
+		var data = trigger_position_dict[position]
+		if not data.available: continue
+		print(data)
+		Navigation2D
+		var new_path = $MapNavigation.get_simple_path(
+			$Hero.global_position,
+			position, true)
+		print("aaaa")
+		print("from ", position)
+		print("to ", $Hero.global_position)
+		
+		var line = $Line2D.duplicate()
+#		add_child(line)
+#		line.points = PoolVector2Array([position, $Hero.global_position])
+#		print("new_path ", new_path)
+		if new_path.size() > 0 : 
+			$Line2D.points = new_path
+			$Hero.path = new_path
+			trigger_position_dict[position]['available'] = false
+			break

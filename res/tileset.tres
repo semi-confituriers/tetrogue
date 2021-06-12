@@ -19,8 +19,8 @@ polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 vertices = PoolVector2Array( 0, 0, 40, 0, 40, 40, 0, 40 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 
-[sub_resource type="NavigationPolygon" id=5]
-vertices = PoolVector2Array( 0, 0, 40, 0, 40, 40, 0, 40 )
+[sub_resource type="NavigationPolygon" id=12]
+vertices = PoolVector2Array( 0, 40, 40, 40, 40, 0, 0, 0 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 
 [sub_resource type="NavigationPolygon" id=6]
@@ -39,8 +39,8 @@ polygons = [ PoolIntArray( 0, 1, 2, 3, 4, 5 ) ]
 vertices = PoolVector2Array( 40, 0, 40, 40, 0, 40, 0, 80, 80, 80, 80, 0 )
 polygons = [ PoolIntArray( 0, 1, 2, 3, 4, 5 ) ]
 
-[sub_resource type="NavigationPolygon" id=10]
-vertices = PoolVector2Array( 0, 0, 40, 0, 40, 40, 0, 40 )
+[sub_resource type="NavigationPolygon" id=13]
+vertices = PoolVector2Array( 40, 40, 0, 40, 0, 0, 40, 0 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 
 [sub_resource type="NavigationPolygon" id=11]
@@ -161,7 +161,7 @@ resource_name = "MapTileset"
 7/shape_one_way_margin = 0.0
 7/shapes = [  ]
 7/z_index = 0
-8/name = "level_tilemap.png 8"
+8/name = "heart"
 8/texture = ExtResource( 1 )
 8/tex_offset = Vector2( 0, 0 )
 8/modulate = Color( 1, 1, 1, 1 )
@@ -169,14 +169,14 @@ resource_name = "MapTileset"
 8/tile_mode = 0
 8/occluder_offset = Vector2( 0, 0 )
 8/navigation_offset = Vector2( 0, 0 )
-8/navigation = SubResource( 10 )
+8/navigation = SubResource( 13 )
 8/shape_offset = Vector2( 0, 0 )
 8/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 8/shape_one_way = false
 8/shape_one_way_margin = 0.0
 8/shapes = [  ]
 8/z_index = 0
-9/name = "level_tilemap.png 9"
+9/name = "heart_2"
 9/texture = ExtResource( 1 )
 9/tex_offset = Vector2( 0, 0 )
 9/modulate = Color( 1, 1, 1, 1 )
@@ -205,7 +205,7 @@ resource_name = "MapTileset"
 10/shape_one_way_margin = 0.0
 10/shapes = [  ]
 10/z_index = 0
-11/name = "level_tilemap.png 11"
+11/name = "fire"
 11/texture = ExtResource( 1 )
 11/tex_offset = Vector2( 0, 0 )
 11/modulate = Color( 1, 1, 1, 1 )
@@ -219,7 +219,7 @@ resource_name = "MapTileset"
 11/shape_one_way_margin = 0.0
 11/shapes = [  ]
 11/z_index = 0
-12/name = "level_tilemap.png 12"
+12/name = "exit"
 12/texture = ExtResource( 1 )
 12/tex_offset = Vector2( 0, 0 )
 12/modulate = Color( 1, 1, 1, 1 )
@@ -234,7 +234,7 @@ resource_name = "MapTileset"
 12/shape_one_way_margin = 0.0
 12/shapes = [  ]
 12/z_index = 0
-13/name = "level_tilemap.png 13"
+13/name = "sword"
 13/texture = ExtResource( 1 )
 13/tex_offset = Vector2( 0, 0 )
 13/modulate = Color( 1, 1, 1, 1 )
@@ -249,7 +249,7 @@ resource_name = "MapTileset"
 13/shape_one_way_margin = 0.0
 13/shapes = [  ]
 13/z_index = 0
-14/name = "level_tilemap.png 14"
+14/name = "shield"
 14/texture = ExtResource( 1 )
 14/tex_offset = Vector2( 0, 0 )
 14/modulate = Color( 1, 1, 1, 1 )
@@ -287,7 +287,7 @@ resource_name = "MapTileset"
 16/tile_mode = 0
 16/occluder_offset = Vector2( 0, 0 )
 16/navigation_offset = Vector2( 0, 0 )
-16/navigation = SubResource( 5 )
+16/navigation = SubResource( 12 )
 16/shape_offset = Vector2( 0, 0 )
 16/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 16/shape_one_way = false
