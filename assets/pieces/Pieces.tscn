@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/pieces/01.png" type="Texture" id=1]
+[ext_resource path="res://scripts/Piece.gd" type="Script" id=2]
+
+[node name="Pieces" type="Node2D"]
+
+[node name="01" type="Area2D" parent="."]
+script = ExtResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="01"]
+polygon = PoolVector2Array( 0, 40, 0, 80, 120, 80, 120, 0, 80, 0, 80, 40 )
+
+[node name="Sprite" type="Sprite" parent="01"]
+texture = ExtResource( 1 )
+centered = false

@@ -18,7 +18,7 @@ func load_level(level_id: int):
 	var new_level_res = load("res://levels/level" + str(level_id) + ".tscn")
 	var new_level = new_level_res.instance()
 	new_level.name = "Level"
-	add_child(new_level)
+	$LevelCont.add_child(new_level)
 	
 	# Gui updating
 	$Gui/LevelBox/Level.text = "Level " + str(current_level_id) + " / " + str(level_max)
@@ -35,8 +35,5 @@ func next_level():
 	if current_level_id == level_max:
 		load_level(1)
 	else:
-		load_level(current_level_id + 1)	
+		load_level(current_level_id + 1)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
