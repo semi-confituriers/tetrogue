@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/sb_ephemera.ogg-d170e5512728f7a4c534d987248ef9d1.oggstr"
+
+[deps]
+
+source_file="res://assets/sounds/sb_ephemera.ogg"
+dest_files=[ "res://.import/sb_ephemera.ogg-d170e5512728f7a4c534d987248ef9d1.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
