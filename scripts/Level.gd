@@ -204,6 +204,7 @@ func OnPiecePlaced():
 		if new_path.size() > 0:
 			print("SET HERO DESTINATION ", triggerPos)
 			$Hero.destination = triggerPos
+			data.available = false
 
 #		var new_path = $MapNavigation.get_simple_path(
 #			$Hero.global_position,
