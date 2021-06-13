@@ -114,7 +114,7 @@ centered = false
 position = Vector2( 20.4634, 100.478 )
 
 [node name="enemy2" parent="Pieces/Sprite4" instance=ExtResource( 6 )]
-position = Vector2( 62.2585, 103.39 )
+position = Vector2( 58.723, 99.1474 )
 
 [node name="enemy3" parent="Pieces/Sprite4" instance=ExtResource( 6 )]
 position = Vector2( 59.887, 60.2106 )

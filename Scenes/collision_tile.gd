@@ -19,7 +19,7 @@ func process_heart(body: Node):
 	heal()
 	empty_tile()
 	
-func process_heart_2(body: Node): 
+func process_heart2(body: Node): 
 	print("Took 2 hearts")
 	hero.get_node("HeartGainSound").play()
 	yield(get_tree().create_timer(0.2), "timeout")

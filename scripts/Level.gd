@@ -57,6 +57,7 @@ func _ready():
 	for name in trigger_tiles:
 		var tile_id = mapTileMap.tile_set.find_tile_by_name(name)
 		for cell_pos in mapTileMap.get_used_cells_by_id(tile_id): 
+#			print("Tile ", name, " at ", cell_pos)
 			var center = mapTileMap.map_to_world(cell_pos) + 0.5 * mapTileMap.cell_size
 			trigger_position_dict[center] = {
 				'func' : trigger_tiles[name],
@@ -77,6 +78,16 @@ func _ready():
 		var heart = TextureRect.new();
 		heart.texture = load("res://assets/heart_full.png")
 		heartsContainer.add_child(heart)
+		
+	
+	for child in mapTileMap.get_children():
+		if child is Sprite:
+			var childTilePos = mapTileMap.world_to_map(child.position)
+			if "enemy" in child.name:
+				var collisionTile = child.get_node('CollisionTile')
+				collisionTile.connect("body_entered", collisionTile, "step_on_enemy")
+			else:
+				print("Unknown object name " + child.name)
 			
 func _input(event):
 	if event is InputEventMouseButton && event.button_index == BUTTON_LEFT:
