@@ -18,7 +18,6 @@ func heal():
 		var sprite = heartsContainer.get_child(maxHitpoint - hitpoints - 1)
 		sprite.texture = load("res://assets/heart_full.png")
 		hitpoints += 1
-	
 
 func process_heart(body: Node):
 	print("Took heart")
@@ -35,10 +34,10 @@ func process_exit(body: Node):
 	
 func process_shield(body: Node):
 	print("Picked up shield")
-	$Hero.shield = true
+	$Hero.set_shield(true)
 func process_sword(body: Node):
 	print("Picked up sword")
-	$Hero.sword = true
+	$Hero.set_sword(true)
 
 var trigger_tiles = {
 	'heart' : "process_heart",
@@ -78,8 +77,6 @@ func _ready():
 		var heart = TextureRect.new();
 		heart.texture = load("res://assets/heart_full.png")
 		heartsContainer.add_child(heart)
-	
-	
 			
 func _input(event):
 	if event is InputEventMouseButton && event.button_index == BUTTON_LEFT:
@@ -193,7 +190,6 @@ func PlacePiece(piece: Sprite, gridPos: Vector2):
 #		$Hero.moving = true
 
 func OnPiecePlaced(): 
-	$Hero.sword = true
 	print("OnPiecePlaced")
 	print("trigger_position_dict=", trigger_position_dict)
 	for triggerPos in trigger_position_dict: 
