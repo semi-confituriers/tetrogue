@@ -36,17 +36,23 @@ func step_on_enemy(body: Node):
 			level.heartsContainer.get_child_count() - (level.hitpoints + 1))
 		sprite.texture = load("res://assets/heart_empty.png")
 	yield(get_tree().create_timer(0.5), "timeout")
+	var sleep_or_not = hero.shield
+	var shall_die = false
+	
 	if hero.sword:
-		var sprite = self.get_parent()
-		sprite.get_parent().remove_child(sprite)
+
+		shall_die = true
 		hero.get_node("EnemyDeathSound").play()
 	if level.hitpoints <= 0:
 		level.find_node("GameOverOverlay").show()
 	else: 
 		hero.moving = true
-		
-	if not hero.shield: 
+	if not sleep_or_not: 
 		yield(get_tree().create_timer(0.5), "timeout")
+	if shall_die : 
+		var sprite = self.get_parent()
+		sprite.get_parent().remove_child(sprite)
+
 		
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
