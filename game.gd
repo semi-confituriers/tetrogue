@@ -2,7 +2,7 @@ extends Node2D
 
 
 var current_level_id = 0
-var level_max = 17
+var level_max = 2
 
 func _ready():
 	load_level(1)
@@ -18,6 +18,9 @@ func load_level(level_id: int):
 	var new_level_res = load("res://levels/level" + str(level_id) + ".tscn")
 	var new_level = new_level_res.instance()
 	new_level.name = "Level"
+	
+	for child in $LevelCont.get_children():
+		$LevelCont.remove_child(child)
 	$LevelCont.add_child(new_level)
 	
 	# Gui updating
