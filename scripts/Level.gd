@@ -137,24 +137,33 @@ func PlacePiece(piece: Sprite, gridPos: Vector2):
 		if child is Sprite:
 			var childTilePos = mapTileMap.world_to_map(child.position + piece.position)
 			if child.name == "enemy":
-				child.get_node("CollisionTile").connect("body_entered", self, "step_on_enemy")
+				var collisionTile = child.get_node('CollisionTile')
+				collisionTile.connect("body_entered", collisionTile, "step_on_enemy")
 			else:
 				print("Unknown object name " + child.name)
 				
 	OnPiecePlaced()
 
-func step_on_enemy(body: Node):
-	print("Stepped on enemy tile ", body)
-	hitpoints -= 1
-	
-	var sprite = heartsContainer.get_child(heartsContainer.get_child_count() - (hitpoints + 1))
-	sprite.texture = load("res://assets/heart_empty.png")
-	
-	if hitpoints <= 0:
-		$GameOverOverlay.show()
-
+#func step_on_enemy(body: Node):
+#	print("Stepped on enemy tile ", body)
+#	hitpoints -= 1
+#
+#	$Hero.moving = false
+#	yield(get_tree().create_timer(1.0), "timeout")
+#	if not $Hero.shield: 
+#		var sprite = heartsContainer.get_child(heartsContainer.get_child_count() - (hitpoints + 1))
+#		sprite.texture = load("res://assets/heart_empty.png")
+#	yield(get_tree().create_timer(1.0), "timeout")
+#	if $Hero.sword:
+#		var enemy = body
+#		#enemy.get_parent().remove_child(enemy)
+#	if hitpoints <= 0:
+#		$GameOverOverlay.show()
+#	else: 
+#		$Hero.moving = true
 
 func OnPiecePlaced(): 
+	$Hero.sword = true
 	print("OnPiecePlaced")
 	print("trigger_position_dict=", trigger_position_dict)
 	for triggerPos in trigger_position_dict: 
