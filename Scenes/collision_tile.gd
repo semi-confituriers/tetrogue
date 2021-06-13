@@ -14,12 +14,19 @@ func heal():
 
 func process_heart(body: Node):
 	print("Took heart")
+	hero.get_node("HeartGainSound").play()
+	yield(get_tree().create_timer(0.2), "timeout")
 	heal()
 	empty_tile()
 	
 func process_heart_2(body: Node): 
 	print("Took 2 hearts")
+	hero.get_node("HeartGainSound").play()
+	yield(get_tree().create_timer(0.2), "timeout")
 	heal()
+	yield(get_tree().create_timer(0.7), "timeout")
+	hero.get_node("HeartGainSound").play()
+	yield(get_tree().create_timer(0.2), "timeout")
 	heal()
 	empty_tile()
 		
@@ -32,11 +39,13 @@ func process_shield(body: Node):
 	print("Picked up shield")
 	hero.set_shield(true)
 	empty_tile()
+	hero.get_node("HappySound").play()
 	
 func process_sword(body: Node):
 	print("Picked up sword")
 	hero.set_sword(true)
 	empty_tile()
+	hero.get_node("HappySound").play()
 
 func empty_tile():
 	var tileMapPos = tilemap.world_to_map(position) + Vector2(0.5, 0.5)
