@@ -1,15 +1,14 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/pieces/01.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/hero.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/pieces/02.png" type="Texture" id=3]
-[ext_resource path="res://assets/pieces/03.png" type="Texture" id=4]
-[ext_resource path="res://scripts/Level.gd" type="Script" id=5]
-[ext_resource path="res://Scenes/enemy.tscn" type="PackedScene" id=6]
-[ext_resource path="res://res/tileset.tres" type="TileSet" id=7]
+[ext_resource path="res://assets/game_win.png" type="Texture" id=3]
+[ext_resource path="res://scripts/Level.gd" type="Script" id=4]
+[ext_resource path="res://Scenes/enemy.tscn" type="PackedScene" id=5]
+[ext_resource path="res://res/tileset.tres" type="TileSet" id=6]
 
 [node name="Level" type="Node2D"]
-script = ExtResource( 5 )
+script = ExtResource( 4 )
 
 [node name="PanelsCont" type="HBoxContainer" parent="."]
 margin_right = 1024.0
@@ -35,11 +34,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="PanelsCont/LeftPanel/HeartsContainer"]
-margin_left = 291.0
-margin_right = 291.0
-margin_bottom = 78.0
-
 [node name="VSeparator" type="VSeparator" parent="PanelsCont"]
 margin_left = 604.0
 margin_right = 608.0
@@ -57,54 +51,53 @@ size_flags_horizontal = 3
 [node name="MapNavigation" type="Navigation2D" parent="."]
 
 [node name="Map" type="TileMap" parent="MapNavigation"]
-tile_set = ExtResource( 7 )
+tile_set = ExtResource( 6 )
 cell_size = Vector2( 40, 40 )
 format = 1
-tile_data = PoolIntArray( 327684, 5, 0, 327685, 5, 0, 327686, 5, 0, 327687, 5, 0, 327688, 5, 0, 327689, 5, 0, 327690, 5, 0, 393219, 7, 0, 393226, 12, 0, 393227, 3, 0, 458755, 7, 0, 458756, 10, 0, 458757, 10, 0, 458758, 10, 0, 458763, 3, 0, 524291, 7, 0, 524292, 10, 0, 524296, 10, 0, 524299, 3, 0, 589827, 7, 0, 589828, 15, 0, 589832, 10, 0, 589835, 3, 0, 655364, 1, 0, 655365, 1, 0, 655366, 1, 0, 655367, 1, 0, 655368, 1, 0, 655369, 1, 0, 655370, 1, 0 )
+tile_data = PoolIntArray( 196611, -1610612729, 0, 196612, -1610612729, 0, 196613, -1610612729, 0, 196614, -1610612729, 0, 196615, -1610612729, 0, 196616, -1610612729, 0, 196617, -1610612729, 0, 196618, -1610612729, 0, 262146, 7, 0, 262151, 12, 0, 262155, 1610612743, 0, 327682, 7, 0, 327691, 1610612743, 0, 393218, 7, 0, 393227, 1610612743, 0, 458754, 7, 0, 458763, 1610612743, 0, 524290, 7, 0, 524294, 8, 0, 524299, 1610612743, 0, 589826, 7, 0, 589830, 15, 0, 589835, 1610612743, 0, 655362, 7, 0, 655371, 1610612743, 0, 720898, 7, 0, 720899, 15, 0, 720900, 15, 0, 720901, 15, 0, 720904, 13, 0, 720907, 1610612743, 0, 786435, -1073741817, 0, 786436, -1073741817, 0, 786437, -1073741817, 0, 786438, -1073741817, 0, 786439, -1073741817, 0, 786440, -1073741817, 0, 786441, -1073741817, 0, 786442, -1073741817, 0 )
 
 [node name="Pieces" type="Node2D" parent="."]
 position = Vector2( 612, 0 )
 
 [node name="Sprite" type="Sprite" parent="Pieces"]
-visible = false
 position = Vector2( 130.564, 96.8315 )
 texture = ExtResource( 1 )
 centered = false
 
-[node name="enemy" parent="Pieces/Sprite" instance=ExtResource( 6 )]
+[node name="enemy" parent="Pieces/Sprite" instance=ExtResource( 5 )]
 position = Vector2( 58.699, 59.6428 )
 
 [node name="Sprite2" type="Sprite" parent="Pieces"]
-position = Vector2( 47.5222, 261.298 )
+position = Vector2( 52.2223, 278.999 )
 texture = ExtResource( 1 )
 centered = false
 
 [node name="Sprite3" type="Sprite" parent="Pieces"]
-position = Vector2( 87.9029, 159.142 )
-texture = ExtResource( 3 )
-centered = false
-
-[node name="Sprite4" type="Sprite" parent="Pieces"]
-position = Vector2( 48.1034, 366.1 )
-texture = ExtResource( 4 )
+position = Vector2( 261.128, 193.663 )
+texture = ExtResource( 1 )
 centered = false
 
 [node name="Line2D" type="Line2D" parent="."]
 width = 2.0
 
 [node name="Hero" parent="." instance=ExtResource( 2 )]
-position = Vector2( 177.699, 390.729 )
+position = Vector2( 138.433, 460.972 )
 
-[node name="GameOverOverlay" type="CenterContainer" parent="."]
-visible = false
+[node name="GameOverOverlay" type="Control" parent="."]
+margin_left = 512.0
+margin_top = 300.0
+margin_right = 512.0
+margin_bottom = 300.0
+
+[node name="win" type="CenterContainer" parent="."]
 margin_right = 1021.0
 margin_bottom = 601.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="hide" type="Panel" parent="GameOverOverlay"]
-modulate = Color( 0.619608, 0.396078, 0.396078, 0.643137 )
+[node name="hide" type="Panel" parent="win"]
+modulate = Color( 0.32549, 0.890196, 0.760784, 1 )
 margin_right = 1024.0
 margin_bottom = 600.0
 rect_min_size = Vector2( 1024, 600 )
@@ -114,11 +107,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="GameOverOverlay"]
-margin_left = 469.0
-margin_top = 293.0
-margin_right = 554.0
-margin_bottom = 307.0
-text = "Game Over :("
-align = 1
-valign = 1
+[node name="TextureRect" type="TextureRect" parent="win"]
+margin_left = 262.0
+margin_top = 150.0
+margin_right = 762.0
+margin_bottom = 450.0
+texture = ExtResource( 3 )
