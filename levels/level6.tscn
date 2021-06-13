@@ -61,7 +61,7 @@ size_flags_horizontal = 3
 tile_set = ExtResource( 7 )
 cell_size = Vector2( 40, 40 )
 format = 1
-tile_data = PoolIntArray( 327684, 5, 0, 327685, 5, 0, 327686, 5, 0, 327687, 5, 0, 327688, 5, 0, 393219, 7, 0, 393220, 10, 0, 393221, 10, 0, 393222, 10, 0, 393223, 10, 0, 393224, 12, 0, 393225, 3, 0, 458755, 7, 0, 458756, 10, 0, 458761, 3, 0, 524291, 7, 0, 524297, 3, 0, 589827, 7, 0, 589828, 15, 0, 589833, 3, 0, 655364, 1, 0, 655365, 1, 0, 655366, 1, 0, 655367, 1, 0, 655368, 1, 0 )
+tile_data = PoolIntArray( 393213, 10, 0, 327684, 5, 0, 327685, 5, 0, 327686, 5, 0, 327687, 5, 0, 327688, 5, 0, 393219, 7, 0, 393220, 10, 0, 393221, 10, 0, 393222, 10, 0, 393223, 10, 0, 393224, 12, 0, 393225, 3, 0, 458755, 7, 0, 458756, 10, 0, 458761, 3, 0, 524291, 7, 0, 524297, 3, 0, 589827, 7, 0, 589828, 15, 0, 589833, 3, 0, 655364, 1, 0, 655365, 1, 0, 655366, 1, 0, 655367, 1, 0, 655368, 1, 0 )
 
 [node name="Pieces" type="Node2D" parent="."]
 position = Vector2( 612, 0 )
@@ -76,7 +76,7 @@ centered = false
 position = Vector2( 58.699, 59.6428 )
 
 [node name="Sprite2" type="Sprite" parent="Pieces"]
-position = Vector2( 29.2855, 266.517 )
+position = Vector2( 21.1823, 178.734 )
 texture = ExtResource( 3 )
 centered = false
 
@@ -84,15 +84,18 @@ centered = false
 position = Vector2( 13.2671, 59.6378 )
 
 [node name="Sprite5" type="Sprite" parent="Pieces"]
-position = Vector2( 40.6771, 365.179 )
+position = Vector2( 121.708, 186.912 )
 texture = ExtResource( 8 )
 centered = false
 
 [node name="enemy" parent="Pieces/Sprite5" instance=ExtResource( 6 )]
 position = Vector2( 61.4759, 58.462 )
 
+[node name="enemy2" parent="Pieces/Sprite5" instance=ExtResource( 6 )]
+position = Vector2( 61.4759, 21.9982 )
+
 [node name="Sprite3" type="Sprite" parent="Pieces"]
-position = Vector2( 53.6263, 166.475 )
+position = Vector2( 129.255, 319.082 )
 texture = ExtResource( 3 )
 centered = false
 
@@ -103,7 +106,7 @@ position = Vector2( 59.89, 59.7849 )
 position = Vector2( 60.3442, 20.7212 )
 
 [node name="Sprite4" type="Sprite" parent="Pieces"]
-position = Vector2( 134.916, 226.067 )
+position = Vector2( 16.0709, 284.139 )
 texture = ExtResource( 4 )
 centered = false
 
@@ -112,6 +115,9 @@ position = Vector2( 20.4634, 100.478 )
 
 [node name="enemy2" parent="Pieces/Sprite4" instance=ExtResource( 6 )]
 position = Vector2( 62.2585, 103.39 )
+
+[node name="enemy3" parent="Pieces/Sprite4" instance=ExtResource( 6 )]
+position = Vector2( 60.908, 21.0092 )
 
 [node name="Line2D" type="Line2D" parent="."]
 width = 2.0
