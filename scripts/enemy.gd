@@ -24,13 +24,17 @@ func step_on_enemy(body: Node):
 	level.hitpoints -= 1
 	hero.moving = false
 	
-	hero.get_node("EnemyNearSound").play()
-	yield(get_tree().create_timer(0.5), "timeout")
+#	hero.get_node("EnemyNearSound").play()
+#	yield(get_tree().create_timer(0.5), "timeout")
 	if not hero.shield: 
+		hero.get_node("EnemyAttackSound").play()
+		yield(get_tree().create_timer(0.7), "timeout")
+		hero.get_node("DamagedSound").play()
+		yield(get_tree().create_timer(0.2), "timeout")
+		hero.get_node("HeartLossSound").play()
 		var sprite = level.heartsContainer.get_child(
 			level.heartsContainer.get_child_count() - (level.hitpoints + 1))
 		sprite.texture = load("res://assets/heart_empty.png")
-		hero.get_node("EnemyAttackSound").play()
 	yield(get_tree().create_timer(1.0), "timeout")
 	if hero.sword:
 		var sprite = self.get_parent()
@@ -40,6 +44,10 @@ func step_on_enemy(body: Node):
 		$GameOverOverlay.show()
 	else: 
 		hero.moving = true
+		
+	if not hero.shield: 
+		yield(get_tree().create_timer(1.0), "timeout")
+		
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
