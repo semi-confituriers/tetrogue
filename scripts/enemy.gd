@@ -28,7 +28,7 @@ func step_on_enemy(body: Node):
 #	yield(get_tree().create_timer(0.5), "timeout")
 	if not hero.shield: 
 		hero.get_node("EnemyAttackSound").play()
-		yield(get_tree().create_timer(0.7), "timeout")
+		yield(get_tree().create_timer(0.75), "timeout")
 		hero.get_node("DamagedSound").play()
 		yield(get_tree().create_timer(0.2), "timeout")
 		hero.get_node("HeartLossSound").play()
