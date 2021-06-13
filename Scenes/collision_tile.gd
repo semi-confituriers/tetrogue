@@ -37,9 +37,9 @@ func process_exit(body: Node):
 	print("Exit level")
 	hero.get_node("HappySound").play()
 	yield(get_tree().create_timer(1.0), "timeout")
+	get_node('/root/Game').set_controls(true) 
 	get_node("/root/Game").next_level()
 	empty_tile()
-	get_node('/root/Game').set_controls(true) 
 	
 func process_shield(body: Node):
 	get_node('/root/Game').set_controls(false) 
