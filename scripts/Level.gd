@@ -163,7 +163,7 @@ func PlacePiece(piece: Sprite, gridPos: Vector2):
 	for child in piece.get_children():
 		if child is Sprite:
 			var childTilePos = mapTileMap.world_to_map(child.position + piece.position)
-			if child.name == "enemy":
+			if "enemy" in child.name:
 				var collisionTile = child.get_node('CollisionTile')
 				collisionTile.connect("body_entered", collisionTile, "step_on_enemy")
 			else:

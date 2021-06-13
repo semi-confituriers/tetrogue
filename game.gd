@@ -2,7 +2,7 @@ extends Node2D
 
 
 var current_level_id = 0
-var level_max = 6
+var level_max = 7
 
 func _ready():
 	load_level(1)
