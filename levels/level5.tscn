@@ -1,0 +1,138 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/pieces/01.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/hero.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/pieces/02.png" type="Texture" id=3]
+[ext_resource path="res://assets/pieces/04.png" type="Texture" id=4]
+[ext_resource path="res://scripts/Level.gd" type="Script" id=5]
+[ext_resource path="res://Scenes/enemy.tscn" type="PackedScene" id=6]
+[ext_resource path="res://res/tileset.tres" type="TileSet" id=7]
+
+[node name="Level" type="Node2D"]
+script = ExtResource( 5 )
+
+[node name="PanelsCont" type="HBoxContainer" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LeftPanel" type="Panel" parent="PanelsCont"]
+margin_right = 600.0
+margin_bottom = 600.0
+rect_min_size = Vector2( 600, 600 )
+
+[node name="HeartsContainer" type="HBoxContainer" parent="PanelsCont/LeftPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 294.661
+margin_top = 43.7058
+margin_right = -13.3394
+margin_bottom = -478.294
+alignment = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="PanelsCont/LeftPanel/HeartsContainer"]
+margin_left = 291.0
+margin_right = 291.0
+margin_bottom = 78.0
+
+[node name="VSeparator" type="VSeparator" parent="PanelsCont"]
+margin_left = 604.0
+margin_right = 608.0
+margin_bottom = 600.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RightPanel" type="Panel" parent="PanelsCont"]
+margin_left = 612.0
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+
+[node name="MapNavigation" type="Navigation2D" parent="."]
+
+[node name="Map" type="TileMap" parent="MapNavigation"]
+tile_set = ExtResource( 7 )
+cell_size = Vector2( 40, 40 )
+format = 1
+tile_data = PoolIntArray( 0, 12, 0, 327684, 5, 0, 327685, 5, 0, 327686, 5, 0, 327687, 5, 0, 327688, 5, 0, 327689, 5, 0, 327690, 5, 0, 458751, 12, 0, 393219, 7, 0, 393221, 10, 0, 393223, 10, 0, 393226, 12, 0, 393227, 3, 0, 458755, 7, 0, 458763, 3, 0, 524291, 7, 0, 524293, 10, 0, 524295, 10, 0, 524299, 3, 0, 589827, 7, 0, 589828, 15, 0, 589835, 3, 0, 655364, 1, 0, 655365, 1, 0, 655366, 1, 0, 655367, 1, 0, 655368, 1, 0, 655369, 1, 0, 655370, 1, 0 )
+
+[node name="Pieces" type="Node2D" parent="."]
+position = Vector2( 612, 0 )
+
+[node name="Sprite" type="Sprite" parent="Pieces"]
+visible = false
+position = Vector2( 130.564, 96.8315 )
+texture = ExtResource( 1 )
+centered = false
+
+[node name="enemy" parent="Pieces/Sprite" instance=ExtResource( 6 )]
+position = Vector2( 58.699, 59.6428 )
+
+[node name="Sprite2" type="Sprite" parent="Pieces"]
+position = Vector2( 117.539, 415.612 )
+texture = ExtResource( 3 )
+centered = false
+
+[node name="enemy2" parent="Pieces/Sprite2" instance=ExtResource( 6 )]
+position = Vector2( 60.5439, 59.6378 )
+
+[node name="Sprite5" type="Sprite" parent="Pieces"]
+position = Vector2( 75.6229, 126.903 )
+texture = ExtResource( 1 )
+centered = false
+
+[node name="Sprite3" type="Sprite" parent="Pieces"]
+position = Vector2( 114.962, 241.262 )
+texture = ExtResource( 3 )
+centered = false
+
+[node name="enemy2" parent="Pieces/Sprite3" instance=ExtResource( 6 )]
+position = Vector2( 59.89, 59.7849 )
+
+[node name="Sprite4" type="Sprite" parent="Pieces"]
+position = Vector2( 113.977, 353.163 )
+texture = ExtResource( 4 )
+centered = false
+
+[node name="enemy3" parent="Pieces/Sprite4" instance=ExtResource( 6 )]
+position = Vector2( 59.9068, 19.9869 )
+
+[node name="Line2D" type="Line2D" parent="."]
+width = 2.0
+
+[node name="Hero" parent="." instance=ExtResource( 2 )]
+position = Vector2( 177.699, 390.729 )
+
+[node name="GameOverOverlay" type="CenterContainer" parent="."]
+visible = false
+margin_right = 1021.0
+margin_bottom = 601.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="hide" type="Panel" parent="GameOverOverlay"]
+modulate = Color( 0.619608, 0.396078, 0.396078, 0.643137 )
+margin_right = 1024.0
+margin_bottom = 600.0
+rect_min_size = Vector2( 1024, 600 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="GameOverOverlay"]
+margin_left = 469.0
+margin_top = 293.0
+margin_right = 554.0
+margin_bottom = 307.0
+text = "Game Over :("
+align = 1
+valign = 1
