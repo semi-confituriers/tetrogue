@@ -1,0 +1,174 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://assets/pieces/01.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/hero.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/pieces/03.png" type="Texture" id=3]
+[ext_resource path="res://assets/pieces/04.png" type="Texture" id=4]
+[ext_resource path="res://scripts/Level.gd" type="Script" id=5]
+[ext_resource path="res://Scenes/enemy.tscn" type="PackedScene" id=6]
+[ext_resource path="res://res/tileset.tres" type="TileSet" id=7]
+[ext_resource path="res://assets/pieces/08.png" type="Texture" id=8]
+[ext_resource path="res://assets/pieces/011.png" type="Texture" id=9]
+[ext_resource path="res://assets/pieces/05.png" type="Texture" id=11]
+[ext_resource path="res://assets/pieces/02.png" type="Texture" id=12]
+
+[node name="Level" type="Node2D"]
+script = ExtResource( 5 )
+
+[node name="PanelsCont" type="HBoxContainer" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LeftPanel" type="Panel" parent="PanelsCont"]
+margin_right = 600.0
+margin_bottom = 600.0
+rect_min_size = Vector2( 600, 600 )
+
+[node name="HeartsContainer" type="HBoxContainer" parent="PanelsCont/LeftPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 294.661
+margin_top = 43.7058
+margin_right = -13.3394
+margin_bottom = -478.294
+alignment = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="PanelsCont/LeftPanel/HeartsContainer"]
+margin_left = 291.0
+margin_right = 291.0
+margin_bottom = 78.0
+
+[node name="VSeparator" type="VSeparator" parent="PanelsCont"]
+margin_left = 604.0
+margin_right = 608.0
+margin_bottom = 600.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RightPanel" type="Panel" parent="PanelsCont"]
+margin_left = 612.0
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+
+[node name="MapNavigation" type="Navigation2D" parent="."]
+
+[node name="Map" type="TileMap" parent="MapNavigation"]
+tile_set = ExtResource( 7 )
+cell_size = Vector2( 40, 40 )
+format = 1
+tile_data = PoolIntArray( 196611, 10, 0, 262149, 10, 0, 327684, 14, 0, 327685, 10, 0, 393220, 10, 0, 524294, 10, 0, 524295, 10, 0, 524296, 10, 0, 524297, 10, 0, 524298, 10, 0, 524299, 10, 0, 589828, 15, 0, 589835, 12, 0, 655366, 10, 0, 655367, 10, 0, 655368, 10, 0, 655369, 10, 0, 655370, 10, 0, 655371, 10, 0 )
+
+[node name="Pieces" type="Node2D" parent="."]
+position = Vector2( 612, 0 )
+
+[node name="Sprite" type="Sprite" parent="Pieces"]
+visible = false
+position = Vector2( 130.564, 96.8315 )
+texture = ExtResource( 1 )
+centered = false
+
+[node name="Sprite2" type="Sprite" parent="Pieces"]
+position = Vector2( 206.589, 438.041 )
+texture = ExtResource( 4 )
+centered = false
+
+[node name="enemy7" parent="Pieces/Sprite2" instance=ExtResource( 6 )]
+position = Vector2( 20.1812, 22.8392 )
+
+[node name="enemy8" parent="Pieces/Sprite2" instance=ExtResource( 6 )]
+position = Vector2( 59.5244, 21.5277 )
+
+[node name="Sprite10" type="Sprite" parent="Pieces"]
+position = Vector2( 21.4958, 225.058 )
+texture = ExtResource( 11 )
+centered = false
+
+[node name="Sprite3" type="Sprite" parent="Pieces"]
+position = Vector2( 158.328, 313.477 )
+texture = ExtResource( 8 )
+centered = false
+
+[node name="enemy8" parent="Pieces/Sprite3" instance=ExtResource( 6 )]
+position = Vector2( 25.7644, 18.2625 )
+
+[node name="Sprite7" type="Sprite" parent="Pieces"]
+position = Vector2( 45.3126, 432.359 )
+texture = ExtResource( 3 )
+centered = false
+
+[node name="enemy4" parent="Pieces/Sprite7" instance=ExtResource( 6 )]
+position = Vector2( 21.2081, 21.0117 )
+
+[node name="enemy5" parent="Pieces/Sprite7" instance=ExtResource( 6 )]
+position = Vector2( 62.7607, 19.8887 )
+
+[node name="enemy6" parent="Pieces/Sprite7" instance=ExtResource( 6 )]
+position = Vector2( 102.629, 19.3271 )
+
+[node name="Sprite5" type="Sprite" parent="Pieces"]
+position = Vector2( 92.2614, 221.852 )
+texture = ExtResource( 9 )
+centered = false
+
+[node name="Sprite6" type="Sprite" parent="Pieces"]
+position = Vector2( 221.193, 212.666 )
+texture = ExtResource( 12 )
+centered = false
+
+[node name="enemy7" parent="Pieces/Sprite6" instance=ExtResource( 6 )]
+position = Vector2( 20.9301, 57.9369 )
+
+[node name="enemy8" parent="Pieces/Sprite6" instance=ExtResource( 6 )]
+position = Vector2( 55.4644, 54.5692 )
+
+[node name="Sprite9" type="Sprite" parent="Pieces"]
+position = Vector2( 40.632, -114.239 )
+texture = ExtResource( 1 )
+centered = false
+
+[node name="Sprite11" type="Sprite" parent="Pieces"]
+position = Vector2( 222.683, -98.3607 )
+texture = ExtResource( 1 )
+centered = false
+
+[node name="Line2D" type="Line2D" parent="."]
+width = 2.0
+
+[node name="Hero" parent="." instance=ExtResource( 2 )]
+position = Vector2( 177.699, 390.729 )
+
+[node name="GameOverOverlay" type="CenterContainer" parent="."]
+visible = false
+margin_right = 1021.0
+margin_bottom = 601.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="hide" type="Panel" parent="GameOverOverlay"]
+modulate = Color( 0.619608, 0.396078, 0.396078, 0.643137 )
+margin_right = 1024.0
+margin_bottom = 600.0
+rect_min_size = Vector2( 1024, 600 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="GameOverOverlay"]
+margin_left = 469.0
+margin_top = 293.0
+margin_right = 554.0
+margin_bottom = 307.0
+text = "Game Over :("
+align = 1
+valign = 1
