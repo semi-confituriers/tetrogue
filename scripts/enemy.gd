@@ -21,13 +21,14 @@ func body_shape_entered(body_id: int, body: Node, body_shape: int, local_shape: 
 func step_on_enemy(body: Node):
 	var level =  get_node('/root/Game/LevelCont/Level')
 	var hero = level.get_node('Hero')
-	level.hitpoints -= 1
+	if not hero.shield:
+		level.hitpoints -= 1
 	hero.moving = false
 	
 #	hero.get_node("EnemyNearSound").play()
 #	yield(get_tree().create_timer(0.5), "timeout")
+	hero.get_node("EnemyAttackSound").play()
 	if not hero.shield: 
-		hero.get_node("EnemyAttackSound").play()
 		yield(get_tree().create_timer(0.75), "timeout")
 		hero.get_node("DamagedSound").play()
 		yield(get_tree().create_timer(0.2), "timeout")

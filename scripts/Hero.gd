@@ -40,19 +40,20 @@ func _physics_process(delta):
 			destination = null
 			
 
-func set_shield(boolean): 
+func set_shield(boolean):
+	print("set_shield ", boolean)
 	shield = boolean
 	var base_path = "res://assets/"
 	var texture
 	if sword : 
 		texture = {
-			false : 'hero_sword', 
+			false : 'hero_shield', 
 			true  : 'hero_full'}[boolean]
 	else : 
 		texture = {
 			false : 'hero_single', 
 			true  : 'hero_shield'}[boolean]
-	$sprite.texture.load(base_path + texture + '.png')
+	$sprite.texture = load(base_path + texture + '.png')
 
 func set_sword(boolean): 
 	sword = boolean

@@ -40,8 +40,8 @@ func process_exit(body: Node):
 func process_shield(body: Node):
 	print("Picked up shield")
 	hero.set_shield(true)
-	empty_tile()
 	hero.get_node("FoundSound").play()
+	empty_tile()
 	
 func process_sword(body: Node):
 	print("Picked up sword")
