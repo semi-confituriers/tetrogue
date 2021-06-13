@@ -1,13 +1,14 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/pieces/01.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/hero.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/pieces/05.png" type="Texture" id=3]
+[ext_resource path="res://assets/pieces/03.png" type="Texture" id=3]
 [ext_resource path="res://assets/pieces/04.png" type="Texture" id=4]
 [ext_resource path="res://scripts/Level.gd" type="Script" id=5]
 [ext_resource path="res://Scenes/enemy.tscn" type="PackedScene" id=6]
 [ext_resource path="res://res/tileset.tres" type="TileSet" id=7]
-[ext_resource path="res://assets/pieces/06.png" type="Texture" id=8]
+[ext_resource path="res://assets/pieces/08.png" type="Texture" id=8]
+[ext_resource path="res://assets/pieces/09.png" type="Texture" id=9]
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 5 )
@@ -61,7 +62,7 @@ size_flags_horizontal = 3
 tile_set = ExtResource( 7 )
 cell_size = Vector2( 40, 40 )
 format = 1
-tile_data = PoolIntArray( 327684, 5, 0, 327685, 5, 0, 327686, 5, 0, 327687, 5, 0, 327688, 5, 0, 327689, 5, 0, 327690, 5, 0, 393219, 7, 0, 393220, 8, 0, 393226, 12, 0, 393227, 3, 0, 458755, 7, 0, 458756, 10, 0, 458760, 10, 0, 458761, 10, 0, 458763, 3, 0, 524291, 7, 0, 524299, 3, 0, 589827, 7, 0, 589828, 15, 0, 589835, 3, 0, 655364, 1, 0, 655365, 1, 0, 655366, 1, 0, 655367, 1, 0, 655368, 1, 0, 655369, 1, 0, 655370, 1, 0 )
+tile_data = PoolIntArray( 327684, 5, 0, 327685, 5, 0, 327686, 5, 0, 327687, 5, 0, 327688, 5, 0, 327689, 5, 0, 327690, 5, 0, 393219, 7, 0, 393222, 10, 0, 393223, 10, 0, 393224, 10, 0, 393226, 12, 0, 393227, 3, 0, 458755, 7, 0, 458756, 8, 0, 458759, 10, 0, 458760, 10, 0, 458763, 3, 0, 524291, 7, 0, 524296, 10, 0, 524299, 3, 0, 589827, 7, 0, 589828, 15, 0, 589835, 3, 0, 655364, 1, 0, 655365, 1, 0, 655366, 1, 0, 655367, 1, 0, 655368, 1, 0, 655369, 1, 0, 655370, 1, 0 )
 
 [node name="Pieces" type="Node2D" parent="."]
 position = Vector2( 612, 0 )
@@ -73,33 +74,33 @@ texture = ExtResource( 1 )
 centered = false
 
 [node name="Sprite2" type="Sprite" parent="Pieces"]
-position = Vector2( 34.1627, 363.156 )
-texture = ExtResource( 1 )
-centered = false
-
-[node name="enemy" parent="Pieces/Sprite2" instance=ExtResource( 6 )]
-position = Vector2( 98.2531, 22.2946 )
-
-[node name="Sprite3" type="Sprite" parent="Pieces"]
-position = Vector2( 159.981, 272.11 )
+position = Vector2( 18.0214, 392.917 )
 texture = ExtResource( 3 )
 centered = false
 
-[node name="enemy2" parent="Pieces/Sprite3" instance=ExtResource( 6 )]
-position = Vector2( 19.4789, 20.3254 )
+[node name="enemy" parent="Pieces/Sprite2" instance=ExtResource( 6 )]
+position = Vector2( 22.6322, 20.4941 )
 
-[node name="Sprite5" type="Sprite" parent="Pieces"]
-position = Vector2( 36.9312, 266.054 )
+[node name="Sprite3" type="Sprite" parent="Pieces"]
+position = Vector2( 79.8352, 235.205 )
 texture = ExtResource( 8 )
 centered = false
 
-[node name="Sprite4" type="Sprite" parent="Pieces"]
-position = Vector2( 33.907, 210.293 )
+[node name="Sprite5" type="Sprite" parent="Pieces"]
+position = Vector2( 79.3694, 332.254 )
 texture = ExtResource( 4 )
+centered = false
+
+[node name="Sprite4" type="Sprite" parent="Pieces"]
+position = Vector2( 12.1224, 249.911 )
+texture = ExtResource( 9 )
 centered = false
 
 [node name="enemy3" parent="Pieces/Sprite4" instance=ExtResource( 6 )]
 position = Vector2( 20.011, 19.9411 )
+
+[node name="enemy4" parent="Pieces/Sprite4" instance=ExtResource( 6 )]
+position = Vector2( 19.7524, 61.2804 )
 
 [node name="Line2D" type="Line2D" parent="."]
 width = 2.0
