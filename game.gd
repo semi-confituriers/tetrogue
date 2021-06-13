@@ -25,6 +25,8 @@ func load_level(level_id: int):
 	$Gui/LevelBox/Prev.disabled = current_level_id == 1
 	$Gui/LevelBox/Next.disabled = current_level_id == level_max
 	
+	
+	
 func restart_level():
 	load_level(current_level_id)
 	

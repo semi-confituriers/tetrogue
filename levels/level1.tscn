@@ -9,19 +9,36 @@
 [node name="Level" type="Node2D"]
 script = ExtResource( 2 )
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="PanelsCont" type="HBoxContainer" parent="."]
 margin_right = 1024.0
 margin_bottom = 600.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Panel" type="Panel" parent="HBoxContainer"]
+[node name="LeftPanel" type="Panel" parent="PanelsCont"]
 margin_right = 600.0
 margin_bottom = 600.0
 rect_min_size = Vector2( 600, 600 )
 
-[node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
+[node name="HeartsContainer" type="HBoxContainer" parent="PanelsCont/LeftPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 294.661
+margin_top = 43.7058
+margin_right = -13.3394
+margin_bottom = -478.294
+alignment = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="PanelsCont/LeftPanel/HeartsContainer"]
+margin_left = 292.0
+margin_right = 292.0
+margin_bottom = 78.0
+
+[node name="VSeparator" type="VSeparator" parent="PanelsCont"]
 margin_left = 604.0
 margin_right = 608.0
 margin_bottom = 600.0
@@ -29,7 +46,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Panel2" type="Panel" parent="HBoxContainer"]
+[node name="RightPanel" type="Panel" parent="PanelsCont"]
 margin_left = 612.0
 margin_right = 1024.0
 margin_bottom = 600.0
@@ -69,3 +86,31 @@ width = 2.0
 
 [node name="Hero" parent="." instance=ExtResource( 6 )]
 position = Vector2( 138.433, 460.972 )
+
+[node name="GameOverOverlay" type="CenterContainer" parent="."]
+visible = false
+margin_right = 1021.0
+margin_bottom = 601.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="hide" type="Panel" parent="GameOverOverlay"]
+modulate = Color( 0.619608, 0.396078, 0.396078, 0.643137 )
+margin_right = 1024.0
+margin_bottom = 600.0
+rect_min_size = Vector2( 1024, 600 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="GameOverOverlay"]
+margin_left = 469.0
+margin_top = 293.0
+margin_right = 554.0
+margin_bottom = 307.0
+text = "Game Over :("
+align = 1
+valign = 1

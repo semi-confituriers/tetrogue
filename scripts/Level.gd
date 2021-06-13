@@ -7,6 +7,8 @@ var dragging: bool = false;
 var draggedPiece: Sprite = null;
 var draggedOffset: Vector2;
 var draggedPhantom: Sprite;
+var heartsContainer: HBoxContainer;
+var hitpoints: int;
 
 
 func process_heart(): pass
@@ -38,7 +40,17 @@ func _ready():
 				'func' : trigger_tiles[name],
 				'available' : true
 			}
-	print("trigger_position_dict=", trigger_position_dict)
+	
+	$GameOverOverlay.hide()
+	heartsContainer = $PanelsCont/LeftPanel/HeartsContainer
+	for child in heartsContainer.get_children():
+		heartsContainer.remove_child(child)
+	hitpoints = 3
+	for i in range(0, hitpoints):
+		var heart = TextureRect.new();
+		heart.texture = load("res://assets/heart_full.png")
+		heartsContainer.add_child(heart)
+			
 func _input(event):
 	if event is InputEventMouseButton && event.button_index == BUTTON_LEFT:
 		var piecesRelPos = event.position - piecesNode.position
@@ -125,10 +137,7 @@ func PlacePiece(piece: Sprite, gridPos: Vector2):
 		if child is Sprite:
 			var childTilePos = mapTileMap.world_to_map(child.position + piece.position)
 			if child.name == "enemy":
-#				var collObj = load("res://Scenes/collision_tile.tscn")
-#				collObj.connect("body_entered", self, "step_on_enemy")
-#				mapTileMap.add_child(collObj)
-				child.get_node("CollisionTile").connect("area_entered", self, "step_on_enemy")
+				child.get_node("CollisionTile").connect("body_entered", self, "step_on_enemy")
 			else:
 				print("Unknown object name " + child.name)
 				
@@ -136,6 +145,13 @@ func PlacePiece(piece: Sprite, gridPos: Vector2):
 
 func step_on_enemy(body: Node):
 	print("Stepped on enemy tile ", body)
+	hitpoints -= 1
+	
+	var sprite = heartsContainer.get_child(heartsContainer.get_child_count() - (hitpoints + 1))
+	sprite.texture = load("res://assets/heart_empty.png")
+	
+	if hitpoints <= 0:
+		$GameOverOverlay.show()
 
 
 func OnPiecePlaced(): 
