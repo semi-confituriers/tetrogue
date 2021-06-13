@@ -2,7 +2,7 @@ extends Node2D
 
 
 var current_level_id = 0
-var level_max = 2
+var level_max = 6
 
 func _ready():
 	load_level(1)
@@ -27,7 +27,6 @@ func load_level(level_id: int):
 	$Gui/LevelBox/Level.text = "Level " + str(current_level_id) + " / " + str(level_max)
 	$Gui/LevelBox/Prev.disabled = current_level_id == 1
 	$Gui/LevelBox/Next.disabled = current_level_id == level_max
-	
 	
 	
 func restart_level():
