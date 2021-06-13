@@ -5,6 +5,8 @@ var speed : = 150.0
 var destination = null
 var moving: bool = true
 
+var sword  = false
+var shield = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -12,7 +14,11 @@ func _ready():
 	set_physics_process(true)
 
 func _physics_process(delta):
-	if destination != null && moving:
+	
+	if destination != null:
+		if !moving:
+			set_linear_velocity(Vector2(0, 0))
+			return
 		var path = get_node("../MapNavigation").get_simple_path(position, destination, false)
 		
 		if path.size() > 1:
@@ -28,8 +34,7 @@ func _physics_process(delta):
 				set_linear_velocity(Vector2(0, 0))
 		else:
 			destination = null
-		
-	
+			
 #func _process(delta:float) -> void: 
 #	var move_distance : = speed * delta
 #	move_along_path(move_distance)
