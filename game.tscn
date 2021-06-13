@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://game.gd" type="Script" id=1]
+[ext_resource path="res://assets/sounds/sb_ephemera.ogg" type="AudioStream" id=2]
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )
@@ -15,8 +16,10 @@ __meta__ = {
 }
 
 [node name="LevelBox" type="HBoxContainer" parent="Gui"]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_left = 17.8381
+margin_top = 17.8381
+margin_right = 241.838
+margin_bottom = 57.8381
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -45,3 +48,17 @@ margin_right = 224.0
 margin_bottom = 27.0
 text = "Level 42 / 1337"
 valign = 1
+
+[node name="Label" type="Label" parent="Gui"]
+margin_left = 630.901
+margin_top = 24.9733
+margin_right = 882.901
+margin_bottom = 38.9733
+rect_scale = Vector2( 1.5, 1.5 )
+text = "Join those pieces together on the map !"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 2 )

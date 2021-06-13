@@ -9,7 +9,7 @@
 [ext_resource path="res://res/tileset.tres" type="TileSet" id=7]
 [ext_resource path="res://assets/pieces/06.png" type="Texture" id=8]
 
-[node name="Level" type="Node2D"]
+[node name="Level2" type="Node2D"]
 script = ExtResource( 5 )
 
 [node name="PanelsCont" type="HBoxContainer" parent="."]

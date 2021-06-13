@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://assets/hero_single.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Hero.gd" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://assets/sounds/hero_attack.wav" type="AudioStream" id=9]
 [ext_resource path="res://assets/sounds/enemy_attack.wav" type="AudioStream" id=10]
 [ext_resource path="res://assets/sounds/hero_happy.wav" type="AudioStream" id=11]
+[ext_resource path="res://assets/sounds/hero_foundsmth.wav" type="AudioStream" id=12]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 8.08592
@@ -31,6 +32,9 @@ texture = ExtResource( 1 )
 
 [node name="HappySound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 11 )
+
+[node name="FoundSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
 
 [node name="WalkSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )

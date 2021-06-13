@@ -32,6 +32,8 @@ func process_heart_2(body: Node):
 		
 func process_exit(body: Node):
 	print("Exit level")
+	hero.get_node("HappySound").play()
+	yield(get_tree().create_timer(1.0), "timeout")
 	get_node("/root/Game").next_level()
 	empty_tile()
 	
@@ -39,13 +41,13 @@ func process_shield(body: Node):
 	print("Picked up shield")
 	hero.set_shield(true)
 	empty_tile()
-	hero.get_node("HappySound").play()
+	hero.get_node("FoundSound").play()
 	
 func process_sword(body: Node):
 	print("Picked up sword")
 	hero.set_sword(true)
 	empty_tile()
-	hero.get_node("HappySound").play()
+	hero.get_node("FoundSound").play()
 
 func empty_tile():
 	var tileMapPos = tilemap.world_to_map(position) + Vector2(0.5, 0.5)
