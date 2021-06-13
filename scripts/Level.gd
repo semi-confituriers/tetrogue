@@ -22,11 +22,18 @@ func heal():
 
 func process_heart(body: Node):
 	print("Took heart")
+	$Hero/HeartGainSound.play()
+	yield(get_tree().create_timer(0.2), "timeout")
 	heal()
 	
 func process_heart_2(body: Node): 
 	print("Took 2 hearts")
+	$Hero/HeartGainSound.play()
+	yield(get_tree().create_timer(0.2), "timeout")
 	heal()
+	yield(get_tree().create_timer(0.5), "timeout")
+	$Hero/HeartGainSound.play()
+	yield(get_tree().create_timer(0.2), "timeout")
 	heal()
 		
 func process_exit(body: Node):

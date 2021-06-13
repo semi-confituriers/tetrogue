@@ -23,15 +23,19 @@ func step_on_enemy(body: Node):
 	var hero = level.get_node('Hero')
 	level.hitpoints -= 1
 	hero.moving = false
-	yield(get_tree().create_timer(1.0), "timeout")
+	
+	hero.get_node("EnemyNearSound").play()
+	yield(get_tree().create_timer(0.5), "timeout")
 	if not hero.shield: 
 		var sprite = level.heartsContainer.get_child(
 			level.heartsContainer.get_child_count() - (level.hitpoints + 1))
 		sprite.texture = load("res://assets/heart_empty.png")
+		hero.get_node("EnemyAttackSound").play()
 	yield(get_tree().create_timer(1.0), "timeout")
 	if hero.sword:
 		var sprite = self.get_parent()
 		sprite.get_parent().remove_child(sprite)
+		hero.get_node("EnemyDeathSound").play()
 	if level.hitpoints <= 0:
 		$GameOverOverlay.show()
 	else: 

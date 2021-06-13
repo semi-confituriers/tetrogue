@@ -18,6 +18,7 @@ func _physics_process(delta):
 	if destination != null:
 		if !moving:
 			set_linear_velocity(Vector2(0, 0))
+			$WalkSound.stop()
 			return
 		var path = get_node("../MapNavigation").get_simple_path(position, destination, false)
 		
@@ -29,8 +30,11 @@ func _physics_process(delta):
 			var distance = path[1] - position
 			var direction = distance.normalized()
 			if distance.length() > 1.5 or path.size() > 2:
+				if !$WalkSound.playing:
+					$WalkSound.play()
 				set_linear_velocity(direction * speed)
 			else:
+				$WalkSound.stop()
 				set_linear_velocity(Vector2(0, 0))
 		else:
 			destination = null
