@@ -141,24 +141,32 @@ func step_on_enemy(body: Node):
 func OnPiecePlaced(): 
 	print("OnPiecePlaced")
 	print("trigger_position_dict=", trigger_position_dict)
-	for position in trigger_position_dict: 
-		var data = trigger_position_dict[position]
+	for triggerPos in trigger_position_dict: 
+		var data = trigger_position_dict[triggerPos]
 		if not data.available: continue
 		print(data)
-		Navigation2D
-		var new_path = $MapNavigation.get_simple_path(
-			$Hero.global_position,
-			position, true)
-		print("aaaa")
-		print("from ", position)
-		print("to ", $Hero.global_position)
 		
-		var line = $Line2D.duplicate()
-#		add_child(line)
-#		line.points = PoolVector2Array([position, $Hero.global_position])
-#		print("new_path ", new_path)
-		if new_path.size() > 0 : 
-			$Line2D.points = new_path
-			$Hero.path = new_path
-			trigger_position_dict[position]['available'] = false
-			break
+		
+		var new_path = $MapNavigation.get_simple_path(
+			$Hero.position,
+			triggerPos, true)
+		if new_path.size() > 0:
+			print("SET HERO DESTINATION ", triggerPos)
+			$Hero.destination = triggerPos
+
+#		var new_path = $MapNavigation.get_simple_path(
+#			$Hero.global_position,
+#			triggerPos, true)
+#		print("aaaa")
+#		print("from ", triggerPos)
+#		print("to ", $Hero.global_position)
+#
+#		var line = $Line2D.duplicate()
+##		add_child(line)
+##		line.points = PoolVector2Array([triggerPos, $Hero.global_position])
+##		print("new_path ", new_path)
+#		if new_path.size() > 0 : 
+#			$Line2D.points = new_path
+#			$Hero.path = new_path
+#			trigger_position_dict[triggerPos]['available'] = false
+#			break

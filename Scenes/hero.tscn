@@ -1,9 +1,21 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://assets/hero_full.png" type="Texture" id=1]
-[ext_resource path="res://Scenes/Sprite.gd" type="Script" id=2]
+[ext_resource path="res://scripts/Hero.gd" type="Script" id=2]
 
-[node name="Hero" type="Sprite"]
-position = Vector2( 20, 20 )
-texture = ExtResource( 1 )
+[sub_resource type="CircleShape2D" id=1]
+radius = 8.08592
+
+[node name="Hero" type="RigidBody2D"]
+mode = 2
+mass = 0.00102041
+gravity_scale = 0.0
+contact_monitor = true
 script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="sprite" type="Sprite" parent="."]
+position = Vector2( 2.97302, -13.6759 )
+texture = ExtResource( 1 )

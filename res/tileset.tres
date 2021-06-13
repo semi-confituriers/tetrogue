@@ -19,7 +19,7 @@ polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 vertices = PoolVector2Array( 0, 0, 40, 0, 40, 40, 0, 40 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 
-[sub_resource type="NavigationPolygon" id=12]
+[sub_resource type="NavigationPolygon" id=5]
 vertices = PoolVector2Array( 0, 40, 40, 40, 40, 0, 0, 0 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 
@@ -39,7 +39,7 @@ polygons = [ PoolIntArray( 0, 1, 2, 3, 4, 5 ) ]
 vertices = PoolVector2Array( 40, 0, 40, 40, 0, 40, 0, 80, 80, 80, 80, 0 )
 polygons = [ PoolIntArray( 0, 1, 2, 3, 4, 5 ) ]
 
-[sub_resource type="NavigationPolygon" id=13]
+[sub_resource type="NavigationPolygon" id=10]
 vertices = PoolVector2Array( 40, 40, 0, 40, 0, 0, 40, 0 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 
@@ -169,7 +169,7 @@ resource_name = "MapTileset"
 8/tile_mode = 0
 8/occluder_offset = Vector2( 0, 0 )
 8/navigation_offset = Vector2( 0, 0 )
-8/navigation = SubResource( 13 )
+8/navigation = SubResource( 10 )
 8/shape_offset = Vector2( 0, 0 )
 8/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 8/shape_one_way = false
@@ -287,7 +287,7 @@ resource_name = "MapTileset"
 16/tile_mode = 0
 16/occluder_offset = Vector2( 0, 0 )
 16/navigation_offset = Vector2( 0, 0 )
-16/navigation = SubResource( 12 )
+16/navigation = SubResource( 5 )
 16/shape_offset = Vector2( 0, 0 )
 16/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 16/shape_one_way = false

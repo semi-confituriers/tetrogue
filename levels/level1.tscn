@@ -1,13 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://res/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://scripts/Level.gd" type="Script" id=2]
 [ext_resource path="res://assets/pieces/01.png" type="Texture" id=4]
 [ext_resource path="res://Scenes/enemy.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/hero.tscn" type="PackedScene" id=6]
-
-[sub_resource type="CircleShape2D" id=1]
-radius = 8.08592
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 2 )
@@ -67,14 +64,8 @@ position = Vector2( 261.128, 193.663 )
 texture = ExtResource( 4 )
 centered = false
 
-[node name="Hero" parent="." instance=ExtResource( 6 )]
-position = Vector2( 141.47, 456.493 )
-
-[node name="KinematicBody2D" type="KinematicBody2D" parent="Hero"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hero/KinematicBody2D"]
-position = Vector2( -3.56763, 6.54065 )
-shape = SubResource( 1 )
-
 [node name="Line2D" type="Line2D" parent="."]
 width = 2.0
+
+[node name="Hero" parent="." instance=ExtResource( 6 )]
+position = Vector2( 138.433, 460.972 )
