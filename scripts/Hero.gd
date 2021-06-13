@@ -39,6 +39,38 @@ func _physics_process(delta):
 		else:
 			destination = null
 			
+
+func set_shield(boolean): 
+	shield = boolean
+	var base_path = "res://assets/"
+	var texture
+	if sword : 
+		texture = {
+			false : 'hero_sword', 
+			true  : 'hero_full'}[boolean]
+	else : 
+		texture = {
+			false : 'hero_single', 
+			true  : 'hero_shield'}[boolean]
+	$sprite.texture.load(base_path + texture + '.png')
+
+func set_sword(boolean): 
+	sword = boolean
+	var base_path = "res://assets/"
+	var texture
+	if shield : 
+		texture = {
+			false : 'hero_shield', 
+			true  : 'hero_full'}[boolean]
+	else : 
+		texture = {
+			false : 'hero_single', 
+			true  : 'hero_sword'}[boolean]
+	print(texture)
+	print(base_path + texture + '.png')
+	$sprite.texture=load(base_path + texture + '.png')
+	
+
 #func _process(delta:float) -> void: 
 #	var move_distance : = speed * delta
 #	move_along_path(move_distance)

@@ -12,40 +12,32 @@ var hitpoints: int;
 var maxHitpoint: int = 3;
 
 
-func heal():
-	if hitpoints < maxHitpoint:
-		print("set child ", maxHitpoint - hitpoints - 1)
-		var sprite = heartsContainer.get_child(maxHitpoint - hitpoints - 1)
-		sprite.texture = load("res://assets/heart_full.png")
-		hitpoints += 1
-	
-
-func process_heart(body: Node):
-	print("Took heart")
-	$Hero/HeartGainSound.play()
-	yield(get_tree().create_timer(0.2), "timeout")
-	heal()
-	
-func process_heart_2(body: Node): 
-	print("Took 2 hearts")
-	$Hero/HeartGainSound.play()
-	yield(get_tree().create_timer(0.2), "timeout")
-	heal()
-	yield(get_tree().create_timer(0.5), "timeout")
-	$Hero/HeartGainSound.play()
-	yield(get_tree().create_timer(0.2), "timeout")
-	heal()
-		
-func process_exit(body: Node):
-	print("Exit level")
-	get_node("/root/Game").next_level()
-	
-func process_shield(body: Node):
-	print("Picked up shield")
-	$Hero.shield = true
-func process_sword(body: Node):
-	print("Picked up sword")
-	$Hero.sword = true
+#func heal():
+#	if hitpoints < maxHitpoint:
+#		print("set child ", maxHitpoint - hitpoints - 1)
+#		var sprite = heartsContainer.get_child(maxHitpoint - hitpoints - 1)
+#		sprite.texture = load("res://assets/heart_full.png")
+#		hitpoints += 1
+#
+#func process_heart(body: Node):
+#	print("Took heart")
+#	heal()
+#
+#func process_heart_2(body: Node): 
+#	print("Took 2 hearts")
+#	heal()
+#	heal()
+#
+#func process_exit(body: Node):
+#	print("Exit level")
+#	get_node("/root/Game").next_level()
+#
+#func process_shield(body: Node):
+#	print("Picked up shield")
+#	$Hero.set_shield(true)
+#func process_sword(body: Node):
+#	print("Picked up sword")
+#	$Hero.set_sword(true)
 
 var trigger_tiles = {
 	'heart' : "process_heart",
@@ -74,7 +66,7 @@ func _ready():
 				var coll = load("res://Scenes/collision_tile.tscn").instance()
 				mapTileMap.add_child(coll)
 				coll.position = mapTileMap.map_to_world(cell_pos);
-				coll.connect("body_entered", self, trigger_tiles[name])
+				coll.connect("body_entered", coll, trigger_tiles[name])
 	
 	$GameOverOverlay.hide()
 	heartsContainer = $PanelsCont/LeftPanel/HeartsContainer
@@ -85,8 +77,6 @@ func _ready():
 		var heart = TextureRect.new();
 		heart.texture = load("res://assets/heart_full.png")
 		heartsContainer.add_child(heart)
-	
-	
 			
 func _input(event):
 	if event is InputEventMouseButton && event.button_index == BUTTON_LEFT:
@@ -200,7 +190,6 @@ func PlacePiece(piece: Sprite, gridPos: Vector2):
 #		$Hero.moving = true
 
 func OnPiecePlaced(): 
-	$Hero.sword = true
 	print("OnPiecePlaced")
 	print("trigger_position_dict=", trigger_position_dict)
 	for triggerPos in trigger_position_dict: 
