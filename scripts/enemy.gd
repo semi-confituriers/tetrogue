@@ -19,6 +19,7 @@ func body_shape_entered(body_id: int, body: Node, body_shape: int, local_shape: 
 	print("body_shape_entered ", body)
 
 func step_on_enemy(body: Node):
+	get_node('/root/Game').set_controls(false)
 	var level =  get_node('/root/Game/LevelCont/Level')
 	var hero = level.get_node('Hero')
 	if not hero.shield:
@@ -48,11 +49,13 @@ func step_on_enemy(body: Node):
 		level.find_node("GameOverOverlay").show()
 	else: 
 		hero.moving = true
+	get_node('/root/Game').set_controls(true)
 	if not sleep_or_not: 
 		yield(get_tree().create_timer(0.5), "timeout")
 	if shall_die : 
 		var sprite = self.get_parent()
 		sprite.get_parent().remove_child(sprite)
+		
 
 		
 	

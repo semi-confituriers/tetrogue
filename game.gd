@@ -11,6 +11,15 @@ func _ready():
 	$Gui/LevelBox/Next.connect("pressed", self, "next_level")
 	$Gui/LevelBox/Restart.connect("pressed", self, "restart_level")
 
+func set_controls(enabled):
+	if enabled:
+		$Gui/LevelBox/Prev.show()
+		$Gui/LevelBox/Next.show()
+		$Gui/LevelBox/Restart.show()
+	else:
+		$Gui/LevelBox/Prev.hide()
+		$Gui/LevelBox/Next.hide()
+		$Gui/LevelBox/Restart.hide()
 
 func load_level(level_id: int):
 	print("Loading level ", level_id)
