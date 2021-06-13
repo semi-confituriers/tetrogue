@@ -9,20 +9,43 @@ var draggedOffset: Vector2;
 var draggedPhantom: Sprite;
 var heartsContainer: HBoxContainer;
 var hitpoints: int;
+var maxHitpoint: int = 3;
 
 
-func process_heart(): pass
-func process_heart_2(): pass
-func process_exit(): pass
-func process_shield(): pass
-func process_sword(): pass
+func heal():
+	if hitpoints < maxHitpoint:
+		print("set child ", maxHitpoint - hitpoints - 1)
+		var sprite = heartsContainer.get_child(maxHitpoint - hitpoints - 1)
+		sprite.texture = load("res://assets/heart_full.png")
+		hitpoints += 1
+	
+
+func process_heart(body: Node):
+	print("Took heart")
+	heal()
+	
+func process_heart_2(body: Node): 
+	print("Took 2 hearts")
+	heal()
+	heal()
+		
+func process_exit(body: Node):
+	print("Exit level")
+	get_node("/root/Game").next_level()
+	
+func process_shield(body: Node):
+	print("Picked up shield")
+	$Hero.shield = true
+func process_sword(body: Node):
+	print("Picked up sword")
+	$Hero.sword = true
 
 var trigger_tiles = {
-	'heart' : funcref(self, "process_heart"),
-	'heart2' : funcref(self, "process_heart2"),
-	'exit' : funcref(self, "process_exit"),
-	'shield' : funcref(self, "process_shield"),
-	'sword' : funcref(self, "process_sword"),
+	'heart' : "process_heart",
+	'heart2' : "process_heart2",
+	'exit' : "process_exit",
+	'shield' : "process_shield",
+	'sword' : "process_sword",
 }
 var trigger_position_dict = {}
 
@@ -32,7 +55,7 @@ func _ready():
 	
 	# Memorizing where trigger tiles are : 
 	# filling trigger_position_dict
-	for name in trigger_tiles: 
+	for name in trigger_tiles:
 		var tile_id = mapTileMap.tile_set.find_tile_by_name(name)
 		for cell_pos in mapTileMap.get_used_cells_by_id(tile_id): 
 			var center = mapTileMap.map_to_world(cell_pos) + 0.5 * mapTileMap.cell_size
@@ -40,16 +63,23 @@ func _ready():
 				'func' : trigger_tiles[name],
 				'available' : true
 			}
+			if trigger_tiles[name] != null:
+				var coll = load("res://Scenes/collision_tile.tscn").instance()
+				mapTileMap.add_child(coll)
+				coll.position = mapTileMap.map_to_world(cell_pos);
+				coll.connect("body_entered", self, trigger_tiles[name])
 	
 	$GameOverOverlay.hide()
 	heartsContainer = $PanelsCont/LeftPanel/HeartsContainer
 	for child in heartsContainer.get_children():
 		heartsContainer.remove_child(child)
-	hitpoints = 3
+	hitpoints = maxHitpoint
 	for i in range(0, hitpoints):
 		var heart = TextureRect.new();
 		heart.texture = load("res://assets/heart_full.png")
 		heartsContainer.add_child(heart)
+	
+	
 			
 func _input(event):
 	if event is InputEventMouseButton && event.button_index == BUTTON_LEFT:
