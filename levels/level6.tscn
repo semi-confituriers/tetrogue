@@ -6,7 +6,7 @@
 [ext_resource path="res://assets/pieces/014.png" type="Texture" id=4]
 [ext_resource path="res://scripts/Level.gd" type="Script" id=5]
 [ext_resource path="res://Scenes/enemy.tscn" type="PackedScene" id=6]
-[ext_resource path="res://res/tileset.tres" type="TileSet" id=7]
+[ext_resource path="res://assets/tileset.tres" type="TileSet" id=7]
 [ext_resource path="res://assets/pieces/08.png" type="Texture" id=8]
 
 [node name="Level3" type="Node2D"]

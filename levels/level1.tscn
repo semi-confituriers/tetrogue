@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://res/tileset.tres" type="TileSet" id=1]
+[ext_resource path="res://assets/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://scripts/Level.gd" type="Script" id=2]
 [ext_resource path="res://assets/pieces/03.png" type="Texture" id=3]
 [ext_resource path="res://assets/pieces/01.png" type="Texture" id=4]
