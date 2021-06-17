@@ -10,7 +10,9 @@ var draggedPhantom: Sprite;
 var heartsContainer: HBoxContainer;
 var hitpoints: int;
 var maxHitpoint: int = 3;
-
+var piecesFillingPos = {}
+var piecesLocked = []
+var piecesMovedFromMap = false
 
 #func heal():
 #	if hitpoints < maxHitpoint:
@@ -93,27 +95,60 @@ func _input(event):
 	if event is InputEventMouseButton && event.button_index == BUTTON_LEFT:
 		var piecesRelPos = event.position - piecesNode.position
 		var mapRelPos = event.position - mapTileMap.position
+		var pieceRelPos
 		if event.pressed && dragging == false:
+			# fetching pieces in pieces original area
 			for piece in $Pieces.get_children():
-				if piece is Sprite:
-					var pieceRelPos = piecesRelPos - piece.position
+				if piece is Sprite: 
+					pieceRelPos = piecesRelPos - piece.position
 					if piece.is_pixel_opaque(pieceRelPos):
-						dragging = true
 						draggedPiece = piece
-						draggedPiece.modulate = Color(1, 1, 1, 0.5)
 						draggedOffset = pieceRelPos
-						draggedPhantom = piece.duplicate()
-						add_child(draggedPhantom)
-						draggedPhantom.position = event.position - draggedOffset
-						break
+						piecesMovedFromMap = false
+						break 
+			# otherwise, fetching pieces on the map. 
+			if not draggedPiece: 
+				for piece in mapTileMap.get_children(): 
+					if piece is Sprite and not piecesLocked.has(piece): 
+						pieceRelPos = mapRelPos - piece.position
+						if piece.is_pixel_opaque(pieceRelPos):
+							draggedPiece = piece
+							piecesMovedFromMap = true
+							draggedOffset = pieceRelPos
+							# removing filling pieces and updating collision maps.
+							for filling in  piecesFillingPos[piece]: 
+								mapTileMap.set_cellv(filling, -1)
+							break
+							mapTileMap.update_dirty_quadrants()
+			if draggedPiece: 
+				dragging = true
+				draggedPiece.modulate = Color(1, 1, 1, 0.5)
+				draggedPhantom = draggedPiece.duplicate()
+				add_child(draggedPhantom)
+				draggedPhantom.position = event.position - draggedOffset				
+			
+			#for piece in $Pieces.get_children():
+			#	if piece is Sprite:
+			#		var pieceRelPos = piecesRelPos - piece.position
+			#		if piece.is_pixel_opaque(pieceRelPos):
+			#			dragging = true
+			#			draggedPiece = piece
+			#			draggedPiece.modulate = Color(1, 1, 1, 0.5)
+			#			draggedOffset = pieceRelPos
+			#			draggedPhantom = piece.duplicate()
+			#			add_child(draggedPhantom)
+			#			draggedPhantom.position = event.position - draggedOffset
+			#			break
+						
 		elif event.pressed == false && dragging == true:
 				draggedPiece.modulate = Color(1, 1, 1, 1)
 				if piecesRelPos.x >= 0:
 					# Dropped in pieces section
+					draggedPiece.get_parent().remove_child(draggedPiece)
+					piecesNode.add_child(draggedPiece)
 					dragging = false
 					draggedPhantom.queue_free()
 					draggedPhantom = null
-					
 					draggedPiece.position = piecesRelPos - draggedOffset
 				else:
 					dragging = false
@@ -142,6 +177,7 @@ func _input(event):
 						PlacePiece(draggedPiece, gridPos)
 					else:
 						pass
+					draggedPiece  = null
 					
 				
 				
@@ -167,15 +203,18 @@ func GetPieceFillings(piece: Sprite):
 	return ret
 	
 func PlacePiece(piece: Sprite, gridPos: Vector2):
+	piecesFillingPos[piece] = []
 	for filling in GetPieceFillings(piece):
-		mapTileMap.set_cellv(gridPos + filling, 16)
+		var filling_pos = gridPos + filling
+		mapTileMap.set_cellv(filling_pos, 16)
+		piecesFillingPos[piece].append(filling_pos)
 	mapTileMap.update_dirty_quadrants()
 		
 	for child in piece.get_children():
 		if child is Sprite:
 			var childTilePos = mapTileMap.world_to_map(child.position + piece.position)
 			if "enemy" in child.name:
-				var collisionTile = child.get_node('CollisionTile')
+				var collisionTile = child.get_node('CollisionTile')	
 				collisionTile.connect("body_entered", collisionTile, "step_on_enemy")
 			else:
 				print("Unknown object name " + child.name)
@@ -213,6 +252,10 @@ func OnPiecePlaced():
 			$Hero.position,
 			triggerPos, true)
 		if new_path.size() > 0:
+			for piece in mapTileMap.get_children() :
+				if 'Sprite' in piece.name:
+					piecesLocked.append(piece)
+					piece.modulate = Color(0.25, 0.25, 0.25, 1)
 			print("SET HERO DESTINATION ", triggerPos)
 			$Hero.destination = triggerPos
 			data.available = false
