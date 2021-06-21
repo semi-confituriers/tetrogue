@@ -1,0 +1,98 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://assets/pieces/06.png" type="Texture" id=1]
+[ext_resource path="res://assets/pieces/03.png" type="Texture" id=2]
+[ext_resource path="res://assets/pieces/05.png" type="Texture" id=3]
+[ext_resource path="res://assets/pieces/02.png" type="Texture" id=4]
+[ext_resource path="res://assets/pieces/01.png" type="Texture" id=5]
+[ext_resource path="res://assets/pieces/04.png" type="Texture" id=6]
+[ext_resource path="res://assets/pieces/011.png" type="Texture" id=7]
+[ext_resource path="res://assets/pieces/014.png" type="Texture" id=8]
+[ext_resource path="res://assets/pieces/012.png" type="Texture" id=9]
+[ext_resource path="res://assets/pieces/09.png" type="Texture" id=10]
+[ext_resource path="res://assets/pieces/013.png" type="Texture" id=11]
+[ext_resource path="res://assets/pieces/08.png" type="Texture" id=12]
+[ext_resource path="res://assets/pieces/010.png" type="Texture" id=13]
+[ext_resource path="res://assets/pieces/07.png" type="Texture" id=14]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 11 ) ],
+"loop": true,
+"name": "Piece13",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "Piece9",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ) ],
+"loop": true,
+"name": "Piece14",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 14 ) ],
+"loop": true,
+"name": "Piece7",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 12 ) ],
+"loop": true,
+"name": "Piece8",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 13 ) ],
+"loop": true,
+"name": "Piece10",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "Piece5",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ) ],
+"loop": true,
+"name": "Piece11",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "Piece1",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "Piece6",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ) ],
+"loop": true,
+"name": "Piece12",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "Piece3",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "Piece4",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "Piece2",
+"speed": 5.0
+} ]
+
+[node name="Entity" type="Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( -1, -2 )
+frames = SubResource( 1 )
